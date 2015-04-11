@@ -1,0 +1,13 @@
+#!/bin/sh
+
+USER=rkt
+GROUP=rkt
+HOMEDIR=/var/lib/rkt
+
+addgroup -q --system ${GROUP}
+adduser -q --system --home ${HOMEDIR} --ingroup ${GROUP} --disabled-password --disabled-login ${USER}
+
+chown ${USER}:${GROUP} ${HOMEDIR}
+
+mkdir -p /var/lib/rkt/cas/db
+rkt install
